@@ -1,0 +1,10 @@
+{
+  "name": "react-redux-plus",
+  "version": "1.0.0",
+  "description": "Make React Redux fun and easy to use",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.4.3"
+  }
+}
