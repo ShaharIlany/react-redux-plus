@@ -1,11 +1,10 @@
 import React from 'react';
-import { useGet, setValue } from 'react-redux-plus'
+import { useValue } from 'react-redux-plus'
 import { storeType } from '.';
 
 function App() {
 
-  const paramB = useGet<storeType>('paramB')
-  const setParamB = setValue<storeType>('paramB')
+  const [paramB, setParamB] = useValue<storeType>("paramB")
 
   return (
     <div className="App">
