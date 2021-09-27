@@ -1,4 +1,5 @@
-import { combineReducers, createStore, Dispatch, Store } from "redux";
+import { useSelector } from "react-redux";
+import { combineReducers, createStore, Store } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 var store: Store
