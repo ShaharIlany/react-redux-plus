@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { useGet, setValue } from 'react-redux-plus'
 import { storeType } from '.';
 

@@ -1819,7 +1819,7 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
 
-"@types/react-dom@^17.0.0":
+"@types/react-dom@^17.0.0", "@types/react-dom@^17.0.9":
   version "17.0.9"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.9.tgz#441a981da9d7be117042e1a6fd3dac4b30f55add"
   integrity sha512-wIvGxLfgpVDSAMH5utdL9Ngm5Owu0VsGmldro3ORLXV8CShrL8awVj06NuEXFQ5xyaYfdca7Sgbk/50Ri1GdPg==
@@ -9097,11 +9097,13 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
-react-redux-plus@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-redux-plus/-/react-redux-plus-1.0.3.tgz#cc2067db5223323c700065cc84f757717127d5ce"
-  integrity sha512-P9U7VB6P0ZvW9kn9AmOeG98Jr4QYLaj0YI/mI14Kwdg2uAC5je7zElFRCo7b1rXKlnqRP7ztZP1L6BHxMUfoyA==
+react-redux-plus@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-redux-plus/-/react-redux-plus-1.0.4.tgz#b7f095ad302369147dc0b4251b2ea53cdc9b44c0"
+  integrity sha512-2KPVoBHm7Y/ORUv3fZDqVitZz1S2Ef/TBDhQKx/OAjRZ+Hbn9xZ4ovkznuBK8qntipBdOwSBqZgqwnCTWnZ9Dw==
   dependencies:
+    "@types/react-dom" "^17.0.9"
+    react-dom "^17.0.2"
     react-redux "^7.2.5"
     redux "^4.1.1"
     redux-devtools-extension "^2.13.9"

@@ -17,11 +17,15 @@ export function initializeStore(defaultStates: { [key: string]: any }, useDevToo
     return store
 }
 
-export function useGet<T, K extends keyof T = keyof T>(variable: K): T[K] {
+export function useValue<T, K extends keyof T = keyof T>(variable: K): [T[K], (newValue: T[K]) => void] {
+    return [useGet(variable), useSet(variable)]
+}
+
+function useGet<T, K extends keyof T = keyof T>(variable: K): T[K] {
     return useSelector<T, T[K]>(store => store[variable])
 }
 
-export function setValue<T, K extends keyof T = keyof T>(variable: K): (newValue: T[K]) => void {
+function useSet<T, K extends keyof T = keyof T>(variable: K): (newValue: T[K]) => void {
     return (newValue: T[K]) => {
         store.dispatch({
             type: variable,
