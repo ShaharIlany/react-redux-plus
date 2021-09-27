@@ -5,6 +5,24 @@
   "main": "lib/index.js",
   "license": "MIT",
   "types": "lib",
+  "keywords": [
+    "redux",
+    "react",
+    "react-redux",
+    "global",
+    "state",
+    "vuex",
+    "store"
+  ],
+  "contributors": [
+    "Shahar Ilany",
+    "Eshel Gurevitch"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShaharIlany/react-redux-plus.git"
+  },
+  "homepage": "https://github.com/ShaharIlany/react-redux-plus",
   "scripts": {
     "build": "tsc -p ."
   },
