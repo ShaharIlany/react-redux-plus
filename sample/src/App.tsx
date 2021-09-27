@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { setValue } from 'react-redux-plus'
+import { useGet, setValue } from 'react-redux-plus'
 import { storeType } from '.';
 
 function App() {
 
-  const paramB = useSelector<storeType>(state => state.paramB)
+  const paramB = useGet<storeType>('paramB')
   const setParamB = setValue<storeType>('paramB')
 
   return (

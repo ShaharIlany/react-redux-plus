@@ -16,8 +16,9 @@ export function initializeStore(defaultStates: { [key: string]: any }, useDevToo
     return store
 }
 
-export function setValue<T>(variable: keyof T) {
-    return (newValue: any) => {
+export function useGet<T, K extends keyof T = keyof T>(variable: K): T[K] {
+    return useSelector<T, T[K]>(store => store[variable])
+}
         store.dispatch({
             type: variable,
             value: newValue
