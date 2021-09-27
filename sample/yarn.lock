@@ -9097,11 +9097,12 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
-react-redux-plus@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-redux-plus/-/react-redux-plus-1.0.1.tgz#4dba4f531eb89294f780d44c6d857ed6c199ac0d"
-  integrity sha512-lGkFVNCLV6CeTT/4CNbgfzqaz0CFPYakPxSD9V1ph3DIF6OyRmaPo8Q0Ui77WhtahMESd019YSN34o6orQX2YA==
+react-redux-plus@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-redux-plus/-/react-redux-plus-1.0.2.tgz#fb2b0bc3df191b0d025b66627ed686e5770083e4"
+  integrity sha512-DtC7p0hIPb8FGRjJgEMeUvMDUs8EjU2A5Rn31eEsnO0g5YcR4kT3ZOcQGSdk32eoxohAtegyOCOd8NfJmW0DmA==
   dependencies:
+    react-redux "^7.2.5"
     redux "^4.1.1"
     redux-devtools-extension "^2.13.9"
 
