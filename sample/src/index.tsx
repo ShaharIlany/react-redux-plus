@@ -7,7 +7,7 @@ const initialStore = {
   paramA: "Test",
   paramB: true
 }
-const store = initializeStore(initialStore)
+initializeStore(initialStore)
 export type storeType = typeof initialStore
 
 ReactDOM.render(
