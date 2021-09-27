@@ -53,11 +53,11 @@ export function initializeStore<S extends object, M extends ModifierMap<S>>
         if (stateModifiers !== undefined) {
             compiledModifiers = objectKeys(stateModifiers).reduce(
                 <MK extends keyof M[K]>(obj: CompiledModifiers<M[K]>, mKey: MK): CompiledModifiers<M[K]> => {
-                    //Fucking need to fix this any thank you bye.
+                    //****ing need to fix this any thank you bye.
                     const stateModifier = stateModifiers[mKey] as any
                     return {
                         ...obj,
-                        [mKey]: (...args: ModifierArgs<M[K][MK]>) => stateModifier(state, ...args)
+                        [mKey]: (...args: ModifierArgs<M[K][MK]>) => dispatch({ type: key, value: stateModifier(state, ...args) })
                     }
                 }, {} as CompiledModifiers<M[K]>)
         }
