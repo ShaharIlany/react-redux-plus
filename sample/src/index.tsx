@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { initializeStore } from 'react-redux-plus'
+import { initializeStore } from './store'
 import { Provider } from 'react-redux'
 
-const initialStore = {
+export const { store, useValue } = initializeStore({
   paramA: "Test",
   paramB: true
-}
-const store = initializeStore(initialStore)
-export type storeType = typeof initialStore
+}, {
+  paramA: {
+    set: (current, value: string) => {
+      return value
+    }
+  },
+})
+
 
 ReactDOM.render(
   <React.StrictMode>

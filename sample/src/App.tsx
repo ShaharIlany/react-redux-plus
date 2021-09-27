@@ -1,10 +1,9 @@
 import React from 'react';
-import { useValue } from 'react-redux-plus'
-import { storeType } from '.';
+import { useValue } from '.'
 
 function App() {
 
-  const [paramB, setParamB] = useValue<storeType>("paramB")
+  const [paramB, modifyParamB] = useValue('paramB')
 
   return (
     <div className="App">
@@ -15,7 +14,7 @@ function App() {
           {paramB ? 'True' : 'False'}
           <br />
           <button onClick={() => {
-            setParamB(!paramB)
+
           }}>Toggle</button>
         </p>
       </header>
