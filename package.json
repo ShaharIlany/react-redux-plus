@@ -1,10 +1,39 @@
 {
   "name": "react-redux-plus",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "Make React Redux fun and easy to use",
-  "main": "index.js",
+  "main": "lib/index.js",
   "license": "MIT",
+  "types": "lib",
+  "keywords": [
+    "redux",
+    "react",
+    "react-redux",
+    "global",
+    "state",
+    "vuex",
+    "store"
+  ],
+  "contributors": [
+    "Shahar Ilany",
+    "Eshel Gurevitch"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShaharIlany/react-redux-plus.git"
+  },
+  "homepage": "https://github.com/ShaharIlany/react-redux-plus",
+  "scripts": {
+    "build": "tsc -p ."
+  },
   "devDependencies": {
     "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@types/react-dom": "^17.0.9",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.5",
+    "redux": "^4.1.1",
+    "redux-devtools-extension": "^2.13.9"
   }
 }
