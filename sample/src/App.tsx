@@ -7,6 +7,7 @@ function App() {
 
   const [paramA, modifyParamA] = useStateValue("paramA")
   const [paramB, modifyParamB] = useStateValue("paramB")
+  const [loggedIn, modifyLoggedIn] = useStateValue("loggedIn")
 
   return (
     <div className="App" style={{
@@ -37,12 +38,26 @@ function App() {
           onClick={() => {
             modifyParamB.toggle()
           }}>Click here to toggle</button>
-          <button className="toggle-button"
+        <button className="toggle-button"
           onClick={() => {
-            modifyParamB.falsify()
+            modifyParamB.set(false)
           }}>Or here to set to false</button>
         <br />
-        <input className="change-input" value={paramA.b} onChange={modifyParamA.inputB}></input>
+        <input className="change-input" value={paramA} onChange={modifyParamA.set}></input>
+        <button className="toggle-button"
+          onClick={() => {
+            modifyParamA.reset()
+          }}>Reset</button>
+        <br />
+        <p>You can also add modifiers with direct value <br />You are currently {loggedIn ? "Logged in" : "Logged out"}</p>
+        <button className="toggle-button"
+          onClick={() => {
+            modifyLoggedIn.login()
+          }}>Login</button>
+        <button className="toggle-button"
+          onClick={() => {
+            modifyLoggedIn.logout()
+          }}>Logout</button>
         <br />
         <h3>
           <a href="https://marketplace.visualstudio.com/items?itemName=ShaharIlany.react-redux-plus-snippets">Download snippets extension for vsCode</a>

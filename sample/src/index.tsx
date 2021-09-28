@@ -2,41 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { Provider } from 'react-redux'
-import { initializeStore } from './react-redux-plus-debug'
+import { initializeStore } from 'react-redux-plus'
 
 export const { store, useStateValue } = initializeStore({
-  paramA: { a: 1, b: 'asd', loggedIn: true },
+  paramA: "This is another test, change me!",
   paramB: true,
   loggedIn: false,
-  paramD: {
-    a: 1,
-    b: 'asd',
-    login: true,
-    d: {
-      a: 1,
-      b: 2
-    }
-  },
 }, {
   paramA: {
     set: (current, input) => { return input.target.value },
-    inputB: (current, input: { target: { value: string } }) => { return { ...current, b: input.target.value } },
-    incrementA: (current) => {
-      return { ...current, a: current.a + 1 }
-    },
-    reset: { a: 0, b: 'asd', loggedIn: true }
-  },
-  loggedIn: {
-    login: true
+    reset: "This is another test, change me!"
   },
   paramB: {
     toggle: (current) => {
       return !current
     },
-    set: (current, newValue) => {
-      return newValue
-    },
-    falsify: false
+  },
+  loggedIn: {
+    login: true,
+    logout: false
   },
 })
 
