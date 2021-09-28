@@ -5,7 +5,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 type DefaultModifiers<S> = { set: (newValue: S) => void }
 
 type StateAction<S> = { [K in keyof S]: { type: K, value: S[K] } }[keyof S]
-type Modifier<S, A extends any[] = any[]> = (current: S, ...args: A) => S
+type Modifier<S, A extends any[] = any[]> = S | ((current: S, ...args: A) => S)
 type ModifierArgs<M> = M extends Modifier<any, infer A> ? A : never
 
 type ModifierMap<S> = { [K in keyof S]?: { [key: string]: Modifier<S[K]> } }
@@ -14,6 +14,7 @@ type UseStateValue<S extends object, M extends ModifierMap<S>> =
     <K extends keyof S>(key: K) =>
         readonly [S[K], DefaultModifiers<S[K]> & { [MK in keyof M[K]]: (...args: ModifierArgs<M[K][MK]>) => void }]
 
+const isFunction = (fn: unknown): fn is Function => (typeof fn === 'function')
 const objectKeys = <T extends object>(object: T): (keyof T)[] => (Object.keys(object) as (keyof T)[])
 const isKeyOf = <T extends object>(key: keyof any, obj: T): key is keyof T => objectKeys<any>(obj).includes(key)
 
@@ -49,8 +50,10 @@ export function initializeStore<State extends object, Modifiers extends Modifier
                 <ModifierKey extends keyof StateModifiers>(mKey: ModifierKey) => {
                     const stateModifier = (
                         isKeyOf(mKey, stateModifiers) ? stateModifiers[mKey] : (() => undefined)
-                    ) as (current: State[Key], ...args: ModifierArgs<StateModifiers[ModifierKey]>) => void
-                    compiledModifiers[mKey] = (...args) => dispatch({ type: key, value: stateModifier(state, ...args) })
+                    ) as State[Key] | ((current: State[Key], ...args: ModifierArgs<StateModifiers[ModifierKey]>) => void)
+                    compiledModifiers[mKey] = isFunction(stateModifier) ?
+                        (...args) => dispatch({ type: key, value: stateModifier(state, ...args) }) :
+                        () => dispatch({ type: key, value: stateModifier })
                 })
         }
 
