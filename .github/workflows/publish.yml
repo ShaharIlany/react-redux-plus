@@ -20,7 +20,9 @@ jobs:
               run: yarn
             - name: 🛠 Build
               run: yarn build
+            - name: Config setup
+              run: npm config set registry http://registry.npmjs.org
             - name: 🚀 Publish
-              run: npm publish --access public --dry-run
+              run: npm publish
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
