@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { initializeStore } from './store'
 import { Provider } from 'react-redux'
+import { initializeStore } from 'react-redux-plus'
 
 export const { store, useStateValue } = initializeStore({
   paramA: "Test",

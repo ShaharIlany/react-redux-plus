@@ -3,8 +3,8 @@ import { useStateValue } from '.'
 
 function App() {
 
+  const [paramA, modifyParamA] = useStateValue("paramA")
   const [paramB, modifyParamB] = useStateValue("paramB")
-  const [, modifyParamA] = useStateValue("paramA")
 
   return (
     <div className="App">
