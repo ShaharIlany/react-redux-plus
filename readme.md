@@ -25,7 +25,7 @@ Note: the installation of react-redux-plus will automatically install the follow
 
 ## We 💖 Visual Studio Code
 
-We make an extension for vscode to help you with the deceleration of new stores and usage of values from states.
+We made an extension for vscode to help you with the deceleration of new stores and usage of values from states.
 
 Link:
 https://marketplace.visualstudio.com/items?itemName=ShaharIlany.react-redux-plus-snippets
