@@ -9193,9 +9193,9 @@ react-is@^17.0.1:
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
 react-redux-plus@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/react-redux-plus/-/react-redux-plus-1.4.0.tgz#52f2f4e5e8b2ff36e44103dafe36e138e6e2a561"
-  integrity sha512-/oPF3V2vjD/LHAtrXHIrUpyPvLcxGjt7WMVLeydOdE9SlyRNXJUWy2a2Etx2kS90fKGvgK6MXWU5AtbZSUFL6g==
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/react-redux-plus/-/react-redux-plus-1.4.1.tgz#6340968affe796fc24b35ee02a1bd68e651bed07"
+  integrity sha512-wnTI28ZqrcXMsnUyTDPO2yaavmBHMeH7T/MOB1RdT82WfXTVRjxzAm3Qjc4gnQ1YGnmjx0kprJlsypOrLBR7lw==
   dependencies:
     "@types/react-dom" "^17.0.9"
     react-dom "^17.0.2"
