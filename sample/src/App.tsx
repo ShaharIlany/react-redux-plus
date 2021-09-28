@@ -39,10 +39,10 @@ function App() {
           }}>Click here to toggle</button>
           <button className="toggle-button"
           onClick={() => {
-            modifyParamB.set(false)
+            modifyParamB.falsify()
           }}>Or here to set to false</button>
         <br />
-        <input className="change-input" value={paramA} onChange={modifyParamA.set}></input>
+        <input className="change-input" value={paramA.b} onChange={modifyParamA.inputB}></input>
         <br />
         <h3>
           <a href="https://marketplace.visualstudio.com/items?itemName=ShaharIlany.react-redux-plus-snippets">Download snippets extension for vsCode</a>
