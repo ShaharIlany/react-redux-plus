@@ -5,6 +5,6 @@
     },
     "Use State Value": {
         "prefix": "usv",
-        "body": "const [${1}, modify${1}] = useStateValue(\"${1}\")${0}"
+        "body": "const [${1}, modify${1/(.*)/${1:/capitalize}/}] = useStateValue(\"${1}\")${0}"
     }
 }
