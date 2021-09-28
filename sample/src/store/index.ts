@@ -2,30 +2,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { createStore, Store, Reducer } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-type Immutable<T> = {
-    readonly [K in keyof T]: T[K];
-}
-
+type StateAction<S> = { [K in keyof S]: { type: K, value: S[K] } }[keyof S]
 type Modifier<S, A extends any[] = any[]> = (current: S, ...args: A) => S
 
 type ModifierMap<S> = { [K in keyof S]?: { [key: string]: Modifier<S[K]> } }
 
-type FullModifierMap<S, M> = { [K in keyof S]: K extends keyof M ? M[K] : undefined }
-
 type ModifierArgs<M> = M extends Modifier<any, infer A> ? A : never
 
-type CompiledModifier<M> = M extends Modifier<infer S, infer A> ? (...args: A) => S : never
-
-type CompiledModifiers<M> = { [K in keyof M]: CompiledModifier<M[K]> }
+type UseValue<S extends object, M extends ModifierMap<S>> = <K extends keyof S>(key: K) => readonly [S[K], {
+    [MK in keyof M[K]]: (...args: ModifierArgs<M[K][MK]>) => void;
+}];
 
 const objectKeys = <T extends object>(object: T): (keyof T)[] => (Object.keys(object) as (keyof T)[])
+const isKeyOf = <T extends object>(key: keyof any, obj: T): key is keyof T => (Object.keys(obj) as (keyof any)[]).includes(key)
 
 export function initializeStore<S extends object, M extends ModifierMap<S>>
     (defaultState: S, modifiers: M, useDevTools: boolean = true): {
-        store: Store<S, { type: keyof S, value: S[keyof S] }>,
-        useValue: <K extends keyof S>(key: K) => [S[K], CompiledModifiers<M[K]>]
+        store: Store<S, StateAction<S>>, useValue: UseValue<S, M>
     } {
-    const reducer: Reducer<S, { type: keyof S, value: S[keyof S] }> =
+    const reducer: Reducer<S, StateAction<S>> =
         <K extends keyof S>(state: S = defaultState, action: { type: K, value: S[K] }): S => {
             return {
                 ...state,
@@ -35,35 +30,22 @@ export function initializeStore<S extends object, M extends ModifierMap<S>>
 
     const store = createStore(reducer, useDevTools ? composeWithDevTools() : undefined)
 
-    const allModifiers: FullModifierMap<S, M> = objectKeys(defaultState).reduce(
-        <K extends keyof S>(obj: FullModifierMap<S, M>, key: K): FullModifierMap<S, M> => {
-            return {
-                ...obj,
-                [key]: modifiers[key] ?? {}
-            }
-        }, {} as FullModifierMap<S, M>)
-
-    const useValue = <K extends keyof S>(key: K): [S[K], CompiledModifiers<M[K]>] => {
+    const useValue: UseValue<S, M> = <K extends keyof S>(key: K) => {
         const state = useSelector<S, S[K]>(store => store[key])
-        const stateModifiers = allModifiers[key]
+        const stateModifiers: M[K] = modifiers[key]
         const dispatch = useDispatch()
-        let compiledModifiers = {} as CompiledModifiers<M[K]>
 
+        let compiledModifiers = {} as { [MK in keyof M[K]]: (...args: ModifierArgs<M[K][MK]>) => void }
 
         if (stateModifiers !== undefined) {
-            compiledModifiers = objectKeys(stateModifiers).reduce(
-                <MK extends keyof M[K]>(obj: CompiledModifiers<M[K]>, mKey: MK): CompiledModifiers<M[K]> => {
-                    //****ing need to fix this any thank you bye.
-                    const stateModifier = stateModifiers[mKey] as any
-                    return {
-                        ...obj,
-                        [mKey]: (...args: ModifierArgs<M[K][MK]>) => dispatch({ type: key, value: stateModifier(state, ...args) })
-                    }
-                }, {} as CompiledModifiers<M[K]>)
+            objectKeys(stateModifiers).forEach(
+                <MK extends keyof M[K]>(mKey: MK) => {
+                    const stateModifier = (isKeyOf(mKey, stateModifiers) ? stateModifiers[mKey] : (() => undefined)) as M[K][MK]
+                    compiledModifiers[mKey] = (...args) => dispatch({ type: key, value: stateModifier(state, ...args) })
+                })
         }
 
-
-        return [state, compiledModifiers]
+        return [state, compiledModifiers] as const
     }
 
     return {
