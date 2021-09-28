@@ -41,7 +41,7 @@ export function initializeStore<State extends object, Modifiers extends Modifier
                 <ModifierKey extends keyof StateModifiers>(mKey: ModifierKey) => {
                     const stateModifier = (
                         isKeyOf(mKey, stateModifiers) ? stateModifiers[mKey] : (() => undefined)
-                    ) as StateModifiers[ModifierKey]
+                    ) as (current: State[Key], ...args: ModifierArgs<StateModifiers[ModifierKey]>) => void
                     compiledModifiers[mKey] = (...args) => dispatch({ type: key, value: stateModifier(state, ...args) })
                 })
         }
