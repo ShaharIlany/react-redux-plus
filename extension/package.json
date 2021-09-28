@@ -1,0 +1,30 @@
+{
+    "name": "react-redux-plus-snippets",
+    "displayName": "React Redux Plus Snippets",
+    "description": "Snippets for easier usage of React Redux Plus",
+    "version": "0.0.1",
+    "publisher": "Shahar Ilany",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ShaharIlany/react-redux-plus"
+    },
+    "logo": "../assets/react-redux-plus.png",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": [
+        "Snippets"
+    ],
+    "contributes": {
+        "snippets": [
+            {
+                "language": "typescript",
+                "path": "./snippets/snippets.code-snippets"
+            },
+            {
+                "language": "typescriptreact",
+                "path": "./snippets/snippets.code-snippets"
+            }
+        ]
+    }
+}

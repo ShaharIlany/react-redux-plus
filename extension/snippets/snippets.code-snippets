@@ -1,0 +1,10 @@
+{
+    "Initialize Store with React Redux Plus": {
+        "prefix": "is",
+        "body": "import { initializeStore } from 'react-redux-plus'\n\nexport const { store, useStateValue } = initializeStore(\n{\n  ${1}\n}, {})${0}",
+    },
+    "Use State Value": {
+        "prefix": "usv",
+        "body": "const [${1}, modify${1}] = useStateValue(\"${1}\")${0}"
+    }
+}
