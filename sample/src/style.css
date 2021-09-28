@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+    background-color: #282c34;
+    color: white;
+    margin: 0
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.toggle-button {
+    margin: 10px;
+    background-color: #add8e6;
+    border-width: 0px;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px black;
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+
+.toggle-button:hover {
+    background-color: rgb(129, 215, 243);
+}
+
+.change-input {
+    margin-top: 10px;
+    width: 250px;
+    text-align: center;
+    outline: none;
+}
+
+a {
+    color: rgb(92, 92, 230);
+    text-decoration: none;
+
+}

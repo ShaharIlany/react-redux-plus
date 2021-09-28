@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { initializeStore } from './store'
 import { Provider } from 'react-redux'
+import { initializeStore } from 'react-redux-plus'
 
 export const { store, useStateValue } = initializeStore({
-  paramA: "Test",
+  paramA: "This is another example, change me!",
   paramB: true
 }, {
   paramB: {
@@ -14,7 +14,7 @@ export const { store, useStateValue } = initializeStore({
     }
   },
   paramA: {
-    set: (current) => { return "none" }
+    set: (current, input) => { return input.target.value }
   }
 })
 ReactDOM.render(

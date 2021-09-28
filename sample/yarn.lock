@@ -9097,10 +9097,10 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
-react-redux-plus@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/react-redux-plus/-/react-redux-plus-1.0.5.tgz#4a52097a3adb3056ec09d154d4d70694417cc53c"
-  integrity sha512-fCOBXbItTkfV14B9/wlXCrmBUs7omQ2W2wHgCBx/9vE/cmmkd7C5iovymc61qeVt/3UQBXLWBlGyBCqxgKB2kA==
+react-redux-plus@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-redux-plus/-/react-redux-plus-1.2.0.tgz#367b99bfd724573b7eecaad930390a2ea714df22"
+  integrity sha512-X3t2FMBjuvmM/s8Wfi7m78UWHXhXdNpf5m8gWqXP0M8VvTiO9oVlrRa0ICnhRqh0DGld5zh5bEWGBda2epgunQ==
   dependencies:
     "@types/react-dom" "^17.0.9"
     react-dom "^17.0.2"
