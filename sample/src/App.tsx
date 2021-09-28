@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './style.css'
 import logo from './logo.png';
 import { useStateValue } from '.'
@@ -22,7 +22,7 @@ function App() {
 
 
       <div style={{ padding: 5, marginBottom: 40 }}>
-        <img src={logo} style={{ width: 250 }} />
+        <img src={logo} style={{ width: 250 }} alt="logo" />
         <br />
         <h2>
           This is an example usage of <a href="https://www.npmjs.com/package/react-redux-plus"><b>React Redux Plus</b></a> plugin
