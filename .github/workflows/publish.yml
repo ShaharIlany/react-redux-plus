@@ -20,6 +20,8 @@ jobs:
               run: yarn
             - name: 🛠 Build
               run: yarn build
+            - name: Config setup
+              run: npm config set registry http://registry.npmjs.org
             - name: 🚀 Publish
               run: npm publish
               env:
