@@ -1,10 +1,10 @@
 import React from 'react';
-import { useValue } from 'react-redux-plus'
-import { storeType } from '.';
+import { useStateValue } from '.'
 
 function App() {
 
-  const [paramB, setParamB] = useValue<storeType>("paramB")
+  const [paramB, modifyParamB] = useStateValue("paramB")
+  const [, modifyParamA] = useStateValue("paramA")
 
   return (
     <div className="App">
@@ -12,10 +12,11 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
           <br />
-          {paramB ? 'True' : 'False'}
+          {paramB.toString()}
           <br />
           <button onClick={() => {
-            setParamB(!paramB)
+            modifyParamB.toggle()
+            modifyParamA.set()
           }}>Toggle</button>
         </p>
       </header>

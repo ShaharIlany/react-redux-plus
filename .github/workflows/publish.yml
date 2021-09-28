@@ -1,0 +1,26 @@
+name: "🚀 Release"
+
+on:
+    push:
+        branches:
+          - master
+
+jobs:
+    release:
+        name: 🚀 Release
+        runs-on: ubuntu-latest
+        steps:
+            - name: 📚 checkout
+              uses: actions/checkout@v2.1.1
+            - name: 🟢 node
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 14
+            - name: 📦 Install dependencies
+              run: yarn
+            - name: 🛠 Build
+              run: yarn build
+            - name: 🚀 Publish
+              run: npm publish --access public --dry-run
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
