@@ -5,10 +5,10 @@ import { composeWithDevTools } from "redux-devtools-extension";
 type DefaultModifiers<S> = { set: (newValue: S) => void }
 
 type StateAction<S> = { [K in keyof S]: { type: K, value: S[K] } }[keyof S]
-type Modifier<S, A extends any[] = any[]> = S | ((current: S, ...args: A) => S)
-type ModifierArgs<M> = M extends Modifier<any, infer A> ? A : never
+type Modifier<S, A extends any[] = any[]> = ((current: S, ...args: A) => S)
+type ModifierArgs<M> = M extends Modifier<any, infer A> ? A : []
 
-type ModifierMap<S> = { [K in keyof S]?: { [key: string]: Modifier<S[K]> } }
+type ModifierMap<S> = { [K in keyof S]?: { [key: string]: S[K] | Modifier<S[K]> } }
 
 type UseStateValue<S extends object, M extends ModifierMap<S>> =
     <K extends keyof S>(key: K) =>
