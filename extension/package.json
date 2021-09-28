@@ -8,7 +8,7 @@
         "type": "git",
         "url": "https://github.com/ShaharIlany/react-redux-plus"
     },
-    "logo": "../assets/react-redux-plus.png",
+    "logo": "logo.png",
     "engines": {
         "vscode": "^1.60.0"
     },
