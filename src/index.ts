@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { createStore, Store, Reducer } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
+type DefaultModifiers<S> = { set: (newValue: S) => void }
+
 type StateAction<S> = { [K in keyof S]: { type: K, value: S[K] } }[keyof S]
 type Modifier<S, A extends any[] = any[]> = (current: S, ...args: A) => S
 type ModifierArgs<M> = M extends Modifier<any, infer A> ? A : never
@@ -10,7 +12,7 @@ type ModifierMap<S> = { [K in keyof S]?: { [key: string]: Modifier<S[K]> } }
 
 type UseStateValue<S extends object, M extends ModifierMap<S>> =
     <K extends keyof S>(key: K) =>
-        readonly [S[K], { [MK in keyof M[K]]: (...args: ModifierArgs<M[K][MK]>) => void }]
+        readonly [S[K], DefaultModifiers<S[K]> & { [MK in keyof M[K]]: (...args: ModifierArgs<M[K][MK]>) => void }]
 
 const objectKeys = <T extends object>(object: T): (keyof T)[] => (Object.keys(object) as (keyof T)[])
 const isKeyOf = <T extends object>(key: keyof any, obj: T): key is keyof T => objectKeys<any>(obj).includes(key)
@@ -34,6 +36,12 @@ export function initializeStore<State extends object, Modifiers extends Modifier
         const stateModifiers: StateModifiers = modifiers[key]
         const dispatch = useDispatch()
 
+        let defaultModifiers: DefaultModifiers<State[Key]> = {
+            set: (newValue: State[Key]) => {
+                dispatch({ type: key, value: newValue })
+            }
+        }
+
         let compiledModifiers = {} as { [MK in keyof StateModifiers]: (...args: ModifierArgs<StateModifiers[MK]>) => void }
 
         if (stateModifiers !== undefined) {
@@ -46,7 +54,12 @@ export function initializeStore<State extends object, Modifiers extends Modifier
                 })
         }
 
-        return [state, compiledModifiers] as const
+        const allModifiers: DefaultModifiers<State[Key]> & { [MK in keyof StateModifiers]: (...args: ModifierArgs<StateModifiers[MK]>) => void } = {
+            ...defaultModifiers,
+            ...compiledModifiers
+        }
+
+        return [state, allModifiers] as const
     }
 
     return {
