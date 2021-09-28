@@ -37,6 +37,10 @@ function App() {
           onClick={() => {
             modifyParamB.toggle()
           }}>Click here to toggle</button>
+          <button className="toggle-button"
+          onClick={() => {
+            modifyParamB.set(false)
+          }}>Or here to set to false</button>
         <br />
         <input className="change-input" value={paramA} onChange={modifyParamA.set}></input>
         <br />
