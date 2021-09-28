@@ -1,6 +1,6 @@
 {
   "name": "react-redux-plus",
-  "version": "1.0.5",
+  "version": "1.2.0",
   "description": "Make React Redux fun and easy to use",
   "main": "lib/index.js",
   "license": "MIT",
@@ -13,6 +13,11 @@
     "state",
     "vuex",
     "store"
+  ],
+  "files": [
+    "License",
+    "src",
+    "lib"
   ],
   "contributors": [
     "Shahar Ilany",
