@@ -38,7 +38,7 @@ Look at the sample project files. you can clone this project and give it a try.
 
 To initialize the store please add the following to your code
 
-```typescriptreact
+```typescript
 // Store => used to set the provider down below
 // useStateValue => exported to use the state values of the current store.
 export const { store, useStateValue } =
@@ -76,7 +76,7 @@ ReactDOM.render(
 
 After the initialization of the store you can start use the states with the following syntax
 
-```typescriptreact
+```typescript
 import { useStateValue } from '../index' // Or from where it exported from
 
 // The first value is the getter and the second is the modifier.
