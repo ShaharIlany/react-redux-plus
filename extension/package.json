@@ -2,7 +2,7 @@
     "name": "react-redux-plus-snippets",
     "displayName": "React Redux Plus Snippets",
     "description": "Snippets for easier usage of React Redux Plus",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "ShaharIlany",
     "repository": {
         "type": "git",
