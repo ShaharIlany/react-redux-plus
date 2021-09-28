@@ -11,6 +11,9 @@ export const { store, useStateValue } = initializeStore({
   paramB: {
     toggle: (current) => {
       return !current
+    },
+    set: (current, newValue) => {
+      return true
     }
   },
   paramA: {
