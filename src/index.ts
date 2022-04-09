@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { createStore, Store, Reducer } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { composeWithDevTools } from "@redux-devtools/extension";
 
 type DefaultModifiers<S> = { set: (newValue: S) => void }
 
