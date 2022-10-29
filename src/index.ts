@@ -8,11 +8,18 @@ type StateAction<S> = { [K in keyof S]: { type: K, value: S[K] } }[keyof S]
 type Modifier<S, A extends any[] = any[]> = ((current: S, ...args: A) => S)
 type ModifierArgs<M> = M extends Modifier<any, infer A> ? A : []
 
-type ModifierMap<S> = { [K in keyof S]?: { [key: string]: S[K] | Modifier<S[K]> } }
+type ModifierMap<S> = {
+  [K in keyof S]?: { [key: string]: S[K] | Modifier<S[K]> };
+};
+type CompiledModifiers<SM extends ModifierMap<any>[any]> = {
+  [MK in keyof SM]: (...args: ModifierArgs<SM[MK]>) => void;
+};
 
-type UseStateValue<S extends object, M extends ModifierMap<S>> =
-    <K extends keyof S>(key: K) =>
-        readonly [S[K], DefaultModifiers<S[K]> & { [MK in keyof M[K]]: (...args: ModifierArgs<M[K][MK]>) => void }]
+type UseStateValue<S extends object, M extends ModifierMap<S>> = <
+  K extends keyof S
+>(
+  key: K
+) => readonly [S[K], DefaultModifiers<S[K]> & CompiledModifiers<M[K]>];
 
 const isFunction = (fn: unknown): fn is Function => (typeof fn === 'function')
 const objectKeys = <T extends object>(object: T): (keyof T)[] => (Object.keys(object) as (keyof T)[])
@@ -43,7 +50,7 @@ export function initializeStore<State extends object, Modifiers extends Modifier
             }
         }
 
-        let compiledModifiers = {} as { [MK in keyof StateModifiers]: (...args: ModifierArgs<StateModifiers[MK]>) => void }
+      let compiledModifiers = {} as CompiledModifiers<StateModifiers>;
 
         if (stateModifiers !== undefined) {
             objectKeys(stateModifiers).forEach(
@@ -57,7 +64,7 @@ export function initializeStore<State extends object, Modifiers extends Modifier
                 })
         }
 
-        const allModifiers: DefaultModifiers<State[Key]> & { [MK in keyof StateModifiers]: (...args: ModifierArgs<StateModifiers[MK]>) => void } = {
+        const allModifiers: DefaultModifiers<State[Key]> & CompiledModifiers<StateModifiers> = {
             ...defaultModifiers,
             ...compiledModifiers
         }
